@@ -5,7 +5,7 @@ import pathlib
 # Import necessary components from LangChain and our custom models
 from langchain.document_loaders import PyPDFLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.vectorstores import Chroma
+from langchain.vectorstores import FAISS
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from langchain.chains.question_answering import load_qa_chain
 from langchain.prompts import PromptTemplate
@@ -135,7 +135,7 @@ if st.button("Get Answer"):
 
                 # Initialize the embeddings and vector store (Chroma in this example)
                 embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001", google_api_key=GOOGLE_API_KEY)
-                vector_index = Chroma.from_texts(texts, embeddings)
+                vector_index = FAISS.from_texts(texts, embeddings)
                 retriever = vector_index.as_retriever()
 
                 # Retrieve relevant documents for the question.
