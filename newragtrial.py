@@ -44,12 +44,13 @@ from langchain.chains import ConversationalRetrievalChain
 # --------------------------
 
 # Set your API keys (ensure you handle these securely in production!)
-
-genai.configure(api_key=st.secrets["gemini_api_key"])
+GOOGLE_API_KEY=st.secrets["gemini_api_key"]
+MISTRAL_API_KEY=st.secrets["mistral_api_key"]
+genai.configure(api_key=GOOGLE_API_KEY)
 
 
 # Initialize the Mistral model (you can change model_version if needed)
-model = ChatMistralAI(mistral_api_key=st.secrets["mistral_api_key"], model_version="mistral-large-latest")
+model = ChatMistralAI(mistral_api_key=MISTRAL_API_KEY, model_version="mistral-large-latest")
 
 # --------------------------
 # Prompt Template
@@ -134,7 +135,7 @@ if st.button("Get Answer"):
                 texts = text_splitter.split_text(full_text)
 
                 # Initialize the embeddings and vector store (Chroma in this example)
-                embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001", google_api_key=gemini_api_key)
+                embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001", google_api_key=GOOGLE_API_KEY)
                 vector_index = FAISS.from_texts(texts, embeddings)
                 retriever = vector_index.as_retriever()
 
