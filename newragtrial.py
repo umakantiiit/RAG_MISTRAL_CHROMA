@@ -12,8 +12,7 @@ from langchain.prompts import PromptTemplate
 from langchain_mistralai.chat_models import ChatMistralAI
 import pathlib
 import textwrap
-from IPython.display import display, Markdown
-from google.colab import userdata
+
 import google.generativeai as genai
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_mistralai.chat_models import ChatMistralAI
